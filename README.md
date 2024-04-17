@@ -28,8 +28,6 @@ And run it with:
 make start
 ```
 
-See our [contributing guide](./CONTRIBUTING.md) for more detailed instructions.
-
 ## License
 
 - The source code is released under ISC
