@@ -1,0 +1,15 @@
+jobs:
+  - title: A job
+    link: "#put_a_url_here"
+    locations:
+      - France
+    publication_date: 2023-09-26
+    company: Some Company
+    company_logo: ""
+  - title: A job
+    link: "#put_a_url_here"
+    locations:
+      - France
+    publication_date: 2023-09-26
+    company: Some Company
+    company_logo: ""

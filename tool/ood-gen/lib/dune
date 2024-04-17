@@ -1,0 +1,16 @@
+(library
+ (name ood_gen)
+ (libraries
+  bos
+  cmarkit
+  yaml
+  unix
+  ptime
+  fmt
+  ppx_show.runtime
+  fpath
+  ppx_stable
+  hilite
+  re)
+ (preprocess
+  (pps ppx_deriving_yaml ppx_stable ppx_show)))

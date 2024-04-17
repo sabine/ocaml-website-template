@@ -1,0 +1,41 @@
+type alternate = {
+  href : string;
+  title: string;
+  type_ : string
+}
+
+let base
+?description
+?styles
+~title
+?(active_top_nav_item: Header.active_nav_item option)
+?(footer_html = "")
+inner =
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <% (match description with | Some description -> %>
+      <meta name="description" content="<%s description %>">
+      <% | None -> ()); %>
+      <meta name="theme-color" content="#fff" >
+      <meta name="color-scheme" content="white">
+      <link rel="icon" type="image/x-icon" href="<%s Static_files.Asset.url "favicon.ico" %>">
+      <% (match styles with | Some styles -> styles |> List.iter (fun style -> %>
+      <link rel="stylesheet" href="<%s Static_files.Asset.url style %>">
+      <% ) | None -> %>
+      <link rel="stylesheet" href="<%s Static_files.Asset.url "css/main.css" %>">
+      <% ); %>
+      <title><%s title %></title>
+    </head>
+
+    <body>
+      <%s! Header.render ?active_top_nav_item () %>
+      <main><%s! inner %></main>
+
+      <%s! footer_html %>
+    </body>
+  </html>
+
+let render = base ~footer_html:""

@@ -1,0 +1,20 @@
+let render (blog : Data.Blog.t) =
+Layout.render
+~title:blog.title
+~description:blog.description
+~active_top_nav_item:Blog @@
+<div class="py-12">
+  <div class="container mx-auto">
+    <div class="mx-auto max-w-5xl">
+      <a href="<%s Url.blog %>"
+        class="flex justify-start space-x-3 items-center hover:underline font-semibold mb-4 h-12">
+        <div>Back to Blog</div>
+      </a>
+    </div>
+
+    <div class="prose mx-auto max-w-5xl">
+      <h1><%s blog.title %></h1>
+      <%s! blog.body_html %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+let render
+()
+=
+Layout.render
+~title:"Homepage"
+~description:"This is the homepage."
+~active_top_nav_item:Home
+@@
+<div class="container mx-auto py-12">
+<h1>Hello World</h1>
+</div>

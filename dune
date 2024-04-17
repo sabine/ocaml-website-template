@@ -1,0 +1,14 @@
+(subdir
+ asset/css/
+ (rule
+  (target main.css)
+  (deps
+   (:config %{workspace_root}/tailwind.config.js)
+   (:input %{workspace_root}/src/templates/css/styles.css)
+   (source_tree %{workspace_root}/src/templates))
+  (action
+   (chdir
+    %{workspace_root}
+    (run tailwindcss -m -c %{config} -i %{input} -o %{target})))))
+
+(data_only_dirs data)

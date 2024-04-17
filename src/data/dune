@@ -1,0 +1,27 @@
+(library
+ (name data)
+ (public_name ocaml-website-template.data))
+
+(rule
+ (target job.ml)
+ (deps
+  %{workspace_root}/data/jobs.yml
+  (:ood_gen %{workspace_root}/tool/ood-gen/bin/gen.exe))
+ (action
+  (chdir
+   %{workspace_root}
+   (with-stdout-to
+    %{target}
+    (run %{ood_gen} job)))))
+
+(rule
+ (target blog.ml)
+ (deps
+  (source_tree %{workspace_root}/data/blog)
+  (:ood_gen %{workspace_root}/tool/ood-gen/bin/gen.exe))
+ (action
+  (chdir
+   %{workspace_root}
+   (with-stdout-to
+    %{target}
+    (run %{ood_gen} blog)))))

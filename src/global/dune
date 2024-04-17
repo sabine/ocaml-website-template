@@ -1,0 +1,3 @@
+(library
+ (name global)
+ (public_name ocaml-website-template.global))

@@ -1,0 +1,14 @@
+(executable
+ (name main)
+ (public_name server)
+ (package ocaml-website-template)
+ (modules main)
+ (libraries web_server))
+
+(rule
+ (alias run)
+ (deps main.exe %{workspace_root}/asset/css/main.css)
+ (action
+  (chdir
+   %{workspace_root}
+   (run %{bin:server}))))

@@ -1,0 +1,24 @@
+(library
+ (name web_server)
+ (libraries
+  ocaml-website-template.global
+  templates
+  dream
+  dream-accept
+  dream-encoding
+  cmarkit
+  ocaml-website-template.data
+  timedesc
+  mirage-kv-mem))
+
+(rule
+ (deps (universe))
+ (action
+  (with-stdout-to
+   commit.ml
+   (progn
+    (echo "let hash = \"")
+    (pipe-stdout
+     (run "git" "rev-parse" "HEAD")
+     (run "tr" "-d" "\n"))
+    (echo "\"\n")))))

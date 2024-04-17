@@ -1,0 +1,35 @@
+let render (jobs : Data.Job.t list) =
+Layout.render
+~title:"Jobs"
+~description:"Just some jobs."
+~active_top_nav_item:Header.Jobs @@
+<div class="py-12 container mx-auto">
+    <div class="grid grid-cols-1 pb-8 lg:grid-cols-3 gap-8 mt-12">
+        <% jobs |> List.iter (fun (item : Data.Job.t) -> %>
+        <a href="<%s item.link %>"
+            target="_blank"
+            class="card rounded-xl overflow-hidden">
+            <div class="p-5">
+                <p class="text-base mb-2">
+                    <%s item.company %>
+                </p>
+                <p class="text-lg mb-4 font-bold truncate">
+                    <%s item.title %>
+                </p>
+                <div class="flex items-center space-x-2">
+                    <p>
+                        <%s String.concat ", " item.locations %>
+                    </p>
+                </div>
+                <% (match item.publication_date with None -> () | Some date -> %>
+                <div class="flex items-center space-x-2 mt-2">
+                    <p>
+                        <%s date %>
+                    </p>
+                </div>
+                <% ); %>
+            </div>
+        </a>
+        <% ); %>
+    </div>
+</div>

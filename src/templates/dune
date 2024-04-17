@@ -1,0 +1,43 @@
+(library
+ (name templates)
+ (libraries
+  ocaml-website-template.global
+  dream
+  ocaml-website-template.data
+  timedesc
+  static_files))
+
+(include_subdirs unqualified)
+
+(subdir
+ layouts/
+ (rule
+  (target layout.ml)
+  (action
+   (run %{bin:dream_eml} %{dep:layout.eml} --workspace %{workspace_root}))))
+
+(subdir
+ pages/
+ (rule
+  (target blog.ml)
+  (action
+   (run %{bin:dream_eml} %{dep:blog.eml} --workspace %{workspace_root})))
+ (rule
+  (target blog_post.ml)
+  (action
+   (run %{bin:dream_eml} %{dep:blog_post.eml} --workspace %{workspace_root})))
+ (rule
+  (target home.ml)
+  (action
+   (run %{bin:dream_eml} %{dep:home.eml} --workspace %{workspace_root})))
+ (rule
+  (target jobs.ml)
+  (action
+   (run %{bin:dream_eml} %{dep:jobs.eml} --workspace %{workspace_root}))))
+
+(subdir
+ components/
+ (rule
+  (target header.ml)
+  (action
+   (run %{bin:dream_eml} %{dep:header.eml} --workspace %{workspace_root}))))

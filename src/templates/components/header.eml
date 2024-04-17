@@ -1,0 +1,28 @@
+type active_nav_item =
+  | Home
+  | Blog
+  | Jobs
+
+let menu_link
+~(active: bool)
+~href
+~title
+?(_class="")
+()
+=
+  <a href="<%s href %>" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 <%s _class %> <%s if active then "underline" else "" %>"><%s title %></a>
+
+
+let render
+?(active_top_nav_item: active_nav_item option)
+()
+=
+<header class="flex items-center">
+  <nav class="container mx-auto flex justify-between items-center gap-5 xl:gap-8">
+    <ul class="items-center flex flex-col lg:flex-row font-medium">
+      <li><%s! menu_link ~active:(active_top_nav_item=Some Home) ~href:Url.home ~title:"Home" () %></li>
+      <li><%s! menu_link ~active:(active_top_nav_item=Some Blog) ~href:Url.blog ~title:"Blog" () %></li>
+      <li><%s! menu_link ~active:(active_top_nav_item=Some Jobs) ~href:Url.jobs ~title:"Jobs" () %></li>
+    </ul>
+  </nav>
+</header>
